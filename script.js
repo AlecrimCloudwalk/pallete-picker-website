@@ -8,9 +8,11 @@ const analyzeButton = document.getElementById('analyzeButton');
 const resultsSection = document.getElementById('resultsSection');
 const colorBar = document.getElementById('colorBar');
 const colorDetails = document.getElementById('colorDetails');
+const thresholdSlider = document.getElementById('thresholdSlider');
+const thresholdValue = document.getElementById('thresholdValue');
 
 // Constants
-const COLOR_SIMILARITY_THRESHOLD = 30; // Threshold for grouping similar colors (in HSL space)
+let COLOR_SIMILARITY_THRESHOLD = 30; // Now updated by slider
 const MAX_COLORS = 10; // Maximum number of colors to display
 
 // Event Listeners
@@ -20,6 +22,16 @@ dropZone.addEventListener('dragover', handleDragOver);
 dropZone.addEventListener('dragleave', handleDragLeave);
 dropZone.addEventListener('drop', handleDrop);
 analyzeButton.addEventListener('click', analyzeColors);
+thresholdSlider.addEventListener('input', handleThresholdChange);
+
+// Threshold handling
+function handleThresholdChange(e) {
+    COLOR_SIMILARITY_THRESHOLD = parseInt(e.target.value);
+    thresholdValue.textContent = COLOR_SIMILARITY_THRESHOLD;
+    if (previewImage.src) {
+        analyzeColors(); // Re-analyze with new threshold
+    }
+}
 
 // File handling functions
 function handleFileSelect(e) {

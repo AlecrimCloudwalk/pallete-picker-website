@@ -30,7 +30,14 @@
                 <div class="image-preview">
                     <img id="previewImage" alt="Preview">
                 </div>
-                <button id="analyzeButton" class="primary-button">Analyze Colors</button>
+                <div class="controls">
+                    <div class="slider-container">
+                        <label for="thresholdSlider">Color Grouping Threshold:</label>
+                        <input type="range" id="thresholdSlider" min="5" max="100" value="30" class="slider">
+                        <span id="thresholdValue">30</span>
+                    </div>
+                    <button id="analyzeButton" class="primary-button">Analyze Colors</button>
+                </div>
             </section>
 
             <section class="results-section" id="resultsSection" style="display: none;">
